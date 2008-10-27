@@ -2,8 +2,8 @@
 A Microbial Genetic Algorithm written in as few lines of Ruby as I could
 
 ==Usage
-ga = MGA.new
-ga.evolve
+  ga = MGA.new({:popsize => 42})
+  ga.evolve
 
 Args can be passed as a hash.  The following shows valid keys for args their default values if not given 
   {:popsize => 30, :gene_length => 10, :cross_over_rate => 0.7, :mutation_rate => 0.1, :generations => 400}
