@@ -1,0 +1,2 @@
+= Micro Microbial Genetic Algorithm (MMGA)
+A simple implementation of a microbial genetic algorithm in ruby
