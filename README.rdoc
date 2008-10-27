@@ -1,5 +1,5 @@
 = Micro Microbial Genetic Algorithm (MMGA)
-A Microbial Genetic Algorithm written in as few lines of Ruby as I could
+A Microbial Genetic Algorithm written in minimal number of Ruby lines
 
 ==Usage
   ga = MGA.new({:popsize => 42})
