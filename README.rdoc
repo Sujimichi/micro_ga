@@ -1,2 +1,17 @@
 = Micro Microbial Genetic Algorithm (MMGA)
-A simple implementation of a microbial genetic algorithm in ruby
+A Microbial Genetic Algorithm written in as few lines of Ruby as I could
+
+==Usage
+ga = MGA.new
+ga.evolve
+
+Args can be passed as a hash.  The following shows valid keys for args their default values if not given 
+  {:popsize => 30, :gene_length => 10, :cross_over_rate => 0.7, :mutation_rate => 0.1, :generations => 400}
+
+
+==Note on Mutation rates
+Mutation rate can be given in terms of genes or genomes.  
+If a per gene mutation rate of 0.1 is used then 1 gene in a 10 bit genome will mutate, however the same per gene rate will cause 10 mutation in a 100 bit genome.  
+per_gene_rate = per_genome_rate/gene_length
+
+In this GA mutations are implemented on a per gene basis, but the value given in @muation_rate is a per genome value
