@@ -8,15 +8,13 @@ class MGA
     @cross_over_rate = args[:cross_over_rate] || 0.7
     @mutation_rate = args[:mutation_rate] || 0.1  #per genome muation rate (see readme)
     @generations = args[:generations] || 400
-    @population = Array.new(@popsize){ Array.new(@gene_length){ rand.round} }
+    @population = Array.new(@popsize){ Array.new(@gene_length){ 0*rand.round} }
   end
 
   def evolve
     @generations.times do
       select = (0..@popsize-1).sort_by{rand}[0,2].sort_by {|ind| fitness(@population[ind]) }.reverse  #Select two members at random and sort by fitness
-      @population[select.first].each_with_index do |gene,i| #Replace % of weaker member's genes with fitter member's.
-        @population[select.last][i] = pos_mutate( rand<=@cross_over_rate ? gene : @population[select.last][i] )
-      end
+      @population[select.last] = @population[select.last].zip(@population[select.first]).collect {|genes| pos_mutate(genes[(rand<0.7 ? 1 : 0)]) }
     end
   end
 
