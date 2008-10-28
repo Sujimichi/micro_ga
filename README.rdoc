@@ -11,6 +11,11 @@ Args can be passed as a hash.  The following shows valid keys for args their def
 Once run the resultant population can be accessed with 
   ga.population
 
+==Microbial Design
+Microbial GAs are a slight twist on a typical GAs.  Instead of creating a new genome via recombination of two other genomes, the microbial idea is to insert and overwrite some genes of a weaker member with genes from a fitter one.  
+The idea is based on viral life forms which insert sections of DNA into a host, thus altering the hosts DNA.
+Evolution will work with any >0 cross over rate, but a cross over rate of >0.5 (50%) greatly increases the pace.
+
 
 ==A Note on Mutation rates
 Mutation rate can be given in terms of genes or genomes.  
