@@ -13,8 +13,11 @@ class MGA
 
   def evolve
     @generations.times do
-      select = (0..@popsize-1).sort_by{rand}[0,2].sort_by {|ind| fitness(@population[ind]) }.reverse  #Select two members at random and sort by fitness
-      @population[select.last] = @population[select.last].zip(@population[select.first]).collect {|genes| pos_mutate(genes[(rand<@cross_over_rate ? 1 : 0)]) } #Replace % of weaker member's genes with fitter member's.
+      select = (0..@popsize-1).sort_by{rand}[0,2].sort_by {|ind| fitness(@population[ind]) }.reverse  
+      #Select two members at random and sort by fitness, select.first => fitter
+      @population[select.last] = @population[select.last].zip(@population[select.first]).collect {
+        |genes| pos_mutate( genes[ (rand<@cross_over_rate ? 1 : 0) ] )
+      } #Replace % of weaker member's genes with fitter member's with a posibility of mutation.
     end
   end
 
