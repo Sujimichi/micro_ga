@@ -3,7 +3,7 @@ A Microbial Genetic Algorithm written in minimal number of Ruby lines
 
 ==Usage
 
-  g = MGA.new(:generations => 1000, :gene_length => 20, :fitness => Proc.new{|genome|
+  ga = MGA.new(:generations => 1000, :gene_length => 20, :fitness => Proc.new{|genome|
     #puts fitness evaluation logic here. should return numerical value.
     #ie; simple max-ones fitness
     genome.inject{|i,j| i+j}
