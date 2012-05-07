@@ -1,6 +1,6 @@
 #Micro Genetic Algorithm by Jeremy Comer
 class MGA
-  attr_accessor :population, :generations, :mutation_rate, :cross_over_rate
+  attr_accessor :population, :generations, :mutation_rate, :cross_over_rate, :current_generation
 
   def initialize args = {}
     @popsize = args[:popsize] || 30                   #Number of members (genomes) in the population
@@ -13,7 +13,8 @@ class MGA
   end
 
   def evolve
-    @generations.times do
+    @generations.times do |current_generation|
+      @current_generation = current_generation
       select = (0..@popsize-1).sort_by{rand}[0,2].sort_by {|ind| fitness(@population[ind]) }.reverse
       #Select two members at random and sort by fitness, select.first => fitter
       @population[select.last] = @population[select.last].zip(@population[select.first]).collect { |genes|
@@ -29,6 +30,6 @@ class MGA
 
   def fitness genome
     @fitness_function ||= Proc.new{|genome| genome.inject{|i,j| i+j} }
-    @fitness_function.call(genome)
+    @fitness_function.call(genome, @current_generation)
   end
 end
