@@ -2,11 +2,19 @@
 A Microbial Genetic Algorithm written in minimal number of Ruby lines
 
 ==Usage
-  ga = MGA.new({:popsize => 42})
+
+  g = MGA.new(:generations => 1000, :gene_length => 20, :fitness => Proc.new{|genome|
+    #puts fitness evaluation logic here. should return numerical value.
+    #ie; simple max-ones fitness
+    genome.inject{|i,j| i+j}
+  })
+
   ga.evolve
 
 Args can be passed as a hash.  The following shows valid keys for args their default values if not given 
   {:popsize => 30, :gene_length => 10, :cross_over_rate => 0.7, :mutation_rate => 0.1, :generations => 400}
+
+If a fitness function is not given it just uses the simple max-ones fitness.  
 
 Once run the resultant population can be accessed with 
   ga.population
