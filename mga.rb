@@ -9,13 +9,14 @@ class MGA
     @mutation_rate = args[:mutation_rate] || 0.1      #Per genome prob. of mutation (see readme)
     @generations = args[:generations] || 400          #Number of cycles to perform
     @population = Array.new(@popsize){ Array.new(@gene_length){ 0*rand.round} }   #Initialize population
+    @fitness_function = args[:fitness]
   end
 
   def evolve
     @generations.times do
-      select = (0..@popsize-1).sort_by{rand}[0,2].sort_by {|ind| fitness(@population[ind]) }.reverse  
+      select = (0..@popsize-1).sort_by{rand}[0,2].sort_by {|ind| fitness(@population[ind]) }.reverse
       #Select two members at random and sort by fitness, select.first => fitter
-      @population[select.last] = @population[select.last].zip(@population[select.first]).collect { |genes| 
+      @population[select.last] = @population[select.last].zip(@population[select.first]).collect { |genes|
         pos_mutate( genes[ (rand<@cross_over_rate ? 1 : 0) ] )
       } #Replace % of weaker member's genes with fitter member's with a posibility of mutation.
     end
@@ -27,8 +28,7 @@ class MGA
   end
 
   def fitness genome
-    f = 0
-    genome.each {|g| f+=g}
-    return f #sum of genome
+    @fitness_function ||= Proc.new{|genome| genome.inject{|i,j| i+j} }
+    @fitness_function.call(genome)
   end
 end
