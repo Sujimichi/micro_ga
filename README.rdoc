@@ -4,7 +4,7 @@ A Microbial Genetic Algorithm written in minimal number of Ruby lines
 ==Usage
   ga = MGA.new(:generations => 1000, :gene_length => 20, :fitness => Proc.new{|genome|
     #puts fitness evaluation logic here. should return numerical value.
-    #ie; simple max-ones fitness
+    #ie; simple max-ones fitness (or largest sum with mutation_type => :decimal)
     puts(genome.inspect)
     genome.inject{|i,j| i+j}
   })
