@@ -1,7 +1,6 @@
 #Micro Genetic Algorithm by Jeremy Comer
 class MGA
   attr_accessor :population, :generations, :mutation_rate, :cross_over_rate, :fitness_function
-
   def initialize args = {}
     @popsize = args[:popsize] || 30                   #Number of members (genomes) in the population
     @gene_length = args[:gene_length] || 10           #Number of bit (genes) in a genome
@@ -9,8 +8,8 @@ class MGA
     @mutation_rate = args[:mutation_rate] || 0.1      #Per genome prob. of mutation (see readme)
     @mutation_type = args[:mutation_type] || :decimal
     @generations = args[:generations] || 400          #Number of cycles to perform
-    @population = Array.new(@popsize){ Array.new(@gene_length){ 0*rand.round} }   #Initialize population
-    @fitness_function = args[:fitness] || Proc.new{|genome| genome.inject{|i,j| i+j} }
+    @population = Array.new(@popsize){ Array.new(@gene_length){ 0 }}   #Initialize population
+    @fitness_function = args[:fitness] || Proc.new{|genome| puts(genome.inspect);genome.inject{|i,j| i+j} }
   end
 
   def evolve
@@ -25,6 +24,6 @@ class MGA
 
   def pos_mutate n
     return n if rand >= @mutation_rate/@gene_length #convert to per gene based muation rate
-    @mutation_type.eql?(:decimal) ? (n-1).abs : (n + (rand - 0.5)).round(2) #either binary mutation (1 -> 0, 0 -> 1) or +/- small decimal value.
+    @mutation_type.eql?(:decimal) ? (n + (rand - 0.5)).round(2) : (n-1).abs #either binary mutation (1 -> 0, 0 -> 1) or +/- small decimal value.
   end
 end
