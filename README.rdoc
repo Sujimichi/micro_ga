@@ -14,7 +14,7 @@ A Microbial Genetic Algorithm written in minimal number of Ruby lines
 Once run the resultant population can be accessed with
   ga.population
 
-Args can be passed as a hash.  The following shows valid keys for args and thier default values if not given;
+Args can be passed as a hash.  The following shows valid keys for args and their default values if not given;
 
   :popsize => 30,
   :gene_length => 10,
