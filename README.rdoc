@@ -5,6 +5,7 @@ A Microbial Genetic Algorithm written in minimal number of Ruby lines
   ga = MGA.new(:generations => 1000, :gene_length => 20, :fitness => Proc.new{|genome|
     #puts fitness evaluation logic here. should return numerical value.
     #ie; simple max-ones fitness
+    puts(genome.inspect)
     genome.inject{|i,j| i+j}
   })
 
@@ -21,7 +22,7 @@ Args can be passed as a hash.  The following shows valid keys for args and thier
   :mutation_rate => 0.1,
   :mutation_type => :decimal, #can also be :binary.  decimal mutates with small +/- value, binary flips 0->1, 1->0
   :generations => 400,
-  :fitness =>  Proc.new{|genome| puts(genome.inspect); genome.inject{|i,j| i+j} }
+  :fitness =>  Proc.new{|genome| genome.inject{|i,j| i+j} }
 
 
 ==Microbial Design

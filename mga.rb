@@ -9,7 +9,7 @@ class MGA
     @mutation_type = args[:mutation_type] || :decimal
     @generations = args[:generations] || 400          #Number of cycles to perform
     @population = Array.new(@popsize){ Array.new(@gene_length){ 0 }}   #Initialize population
-    @fitness_function = args[:fitness] || Proc.new{|genome| puts(genome.inspect);genome.inject{|i,j| i+j} }
+    @fitness_function = args[:fitness] || Proc.new{|genome| genome.inject{|i,j| i+j} }
   end
 
   def evolve
