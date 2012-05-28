@@ -11,21 +11,22 @@ A Microbial Genetic Algorithm written in minimal number of Ruby lines
 
   ga.evolve
 
-Args can be passed as a hash.  The following shows valid keys for args their default values if not given 
+Args can be passed as a hash.  The following shows valid keys for args their default values if not given
   {:popsize => 30, :gene_length => 10, :cross_over_rate => 0.7, :mutation_rate => 0.1, :generations => 400}
 
-Once run the resultant population can be accessed with 
+Once run the resultant population can be accessed with
   ga.population
 
 ==Microbial Design
-Microbial GAs are a slight twist on a typical GAs.  Instead of creating a new genome via recombination of two other genomes, the microbial idea is to insert and overwrite some genes of a weaker member with genes from a fitter one.  
+Microbial GAs are a slight twist on a typical GAs.  Instead of creating a new genome via recombination of two other genomes, the microbial idea is to insert and overwrite some genes of a weaker member with genes from a fitter one.
 The idea is based on viral life forms which insert sections of DNA into a host, thus altering the hosts DNA.
 Evolution will work with any >0 cross over rate, but a cross over rate of >0.5 (50%) greatly increases the pace.
 
 
 ==A Note on Mutation rates
-Mutation rate can be given in terms of genes or genomes.  
-If a per gene mutation rate of 0.1 is used then 1 gene in a 10 bit genome will mutate, however the same per gene rate will cause 10 mutation in a 100 bit genome.  
+Mutation rates in GAs can be in terms of genes or genomes.  The mutation rate used here is a per genome value which means you get the same per gene mutation rate regardless of gene-length.
+
   per_gene_rate = per_genome_rate/gene_length
 
-In this GA mutations are implemented on a per gene basis, but the value given in :mutation_rate is a per genome value
+With a per genome rate of 0.1 the probability of mutation for each gene in a 10bit genome is 0.01.  If the genome was 100 bits probability of mutation for each gene would be 0.001.
+If a per gene mutation rate of 0.1 is used then 1 gene in a 10 bit genome will mutate, however the same per gene rate will cause 10 mutations in a 100 bit genome.
