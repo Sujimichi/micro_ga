@@ -1,6 +1,6 @@
 #Micro Genetic Algorithm by Jeremy Comer
 class MGA
-  attr_accessor :population, :generations, :mutation_rate, :cross_over_rate, :fitness_function
+  attr_accessor :population, :popsize, :generations, :mutation_rate, :mutation_type, :cross_over_rate, :fitness_function
   def initialize args = {}
     @popsize = args[:popsize] || 30                   #Number of members (genomes) in the population
     @gene_length = args[:gene_length] || 10           #Number of bit (genes) in a genome

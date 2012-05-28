@@ -10,15 +10,24 @@ A Microbial Genetic Algorithm written in minimal number of Ruby lines
 
   ga.evolve
 
-Args can be passed as a hash.  The following shows valid keys for args their default values if not given
-  {:popsize => 30, :gene_length => 10, :cross_over_rate => 0.7, :mutation_rate => 0.1, :generations => 400}
-
 Once run the resultant population can be accessed with
   ga.population
+
+Args can be passed as a hash.  The following shows valid keys for args and thier default values if not given;
+
+  :popsize => 30,
+  :gene_length => 10,
+  :cross_over_rate => 0.7,
+  :mutation_rate => 0.1,
+  :mutation_type => :decimal, #can also be :binary.  decimal mutates with small +/- value, binary flips 0->1, 1->0
+  :generations => 400,
+  :fitness =>  Proc.new{|genome| puts(genome.inspect); genome.inject{|i,j| i+j} }
+
 
 ==Microbial Design
 Microbial GAs are a slight twist on a typical GAs.  Instead of creating a new genome via recombination of two other genomes, the microbial idea is to insert and overwrite some genes of a weaker member with genes from a fitter one.
 The idea is based on viral life forms which insert sections of DNA into a host, thus altering the hosts DNA.
+
 Evolution will work with any >0 cross over rate, but a cross over rate of >0.5 (50%) greatly increases the pace.
 
 
